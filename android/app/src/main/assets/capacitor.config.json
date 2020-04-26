@@ -1,0 +1,8 @@
+{
+  "appId": "com.vilas.myionic",
+  "appName": "beauty",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}

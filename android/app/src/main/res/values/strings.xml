@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">beauty</string>
+    <string name="title_activity_main">beauty</string>
+    <string name="package_name">com.vilas.myionic</string>
+    <string name="custom_url_scheme">com.vilas.myionic</string>
+</resources>
