@@ -115,43 +115,55 @@ export class PlacesService {
       );
   }
 
+  
+
+
   addPlace(
     title: string,
     description: string,
     price: number,
     dateFrom: Date,
-    dateTo: Date
+    dateTo: Date,
+    //location: PlaceLocation,
+    //imageUrl: string
   ) {
     let generatedId: string;
-    const newPlace = new Place(
-      Math.random().toString(),
-      title,
-      description,
-      'https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200',
-      price,
-      dateFrom,
-      dateTo,
-      this.authService.userId
-    );
-    return this.http
-      .post<{ name: string }>(
-        'https://ionicfirebase-50c1e.firebaseio.com/offered-places.json',
-        {
-          ...newPlace,
-          id: null
+    let newPlace: Place;
+    return this.authService.userId.pipe(
+      take(1),
+      switchMap(userId => {
+        if (!userId) {
+          throw new Error('No user found!');
         }
-      )
-      .pipe(
-        switchMap(resData => {
-          generatedId = resData.name;
-          return this.places;
-        }),
-        take(1),
-        tap(places => {
-          newPlace.id = generatedId;
-          this._places.next(places.concat(newPlace));
-        })
-      );
+        newPlace = new Place(
+          Math.random().toString(),
+          title,
+          description,
+          'https://lonelyplanetimages.imgix.net/mastheads/GettyImages-538096543_medium.jpg?sharp=10&vib=20&w=1200',
+          price,
+          dateFrom,
+          dateTo,
+          userId,
+          //location
+        );
+        return this.http.post<{ name: string }>(
+          'https://ionicfirebase-50c1e.firebaseio.com/offered-places.json',
+          {
+            ...newPlace,
+            id: null
+          }
+        );
+      }),
+      switchMap(resData => {
+        generatedId = resData.name;
+        return this.places;
+      }),
+      take(1),
+      tap(places => {
+        newPlace.id = generatedId;
+        this._places.next(places.concat(newPlace));
+      })
+    );
     // return this.places.pipe(
     //   take(1),
     //   delay(1000),
