@@ -1,0 +1,30 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/places/tabs/discover"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Add New Offers</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+  <ion-item>
+  <ion-label stacked>Title</ion-label>
+  <ion-input type="text" [(ngModel)]="product.title"></ion-input>
+  </ion-item>
+  <ion-item>
+  <ion-label stacked>Description</ion-label>
+  <ion-input type="text" [(ngModel)]="product.desc"></ion-input>
+  </ion-item>
+  <ion-item>
+  <ion-label stacked>Price</ion-label>
+  <ion-input type="text" [(ngModel)]="product.price"></ion-input>
+  </ion-item>
+  <ion-item>
+  <ion-label stacked>Pic URL</ion-label>
+  <ion-input type="text" [(ngModel)]="product.pic"></ion-input>
+  </ion-item>
+  <button ion-button (click)="insert()">Insert</button>
+  </ion-list>
+</ion-content>
