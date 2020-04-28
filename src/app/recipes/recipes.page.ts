@@ -10,7 +10,7 @@ import { RecipeService } from './recipe.service';
 export class RecipesPage implements OnInit {
 
 
-  private recpe: Recipes[] ;
+   recpe: Recipes[] ;
 
   constructor(private rserv: RecipeService) { }
 
