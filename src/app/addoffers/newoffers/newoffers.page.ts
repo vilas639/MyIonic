@@ -29,14 +29,17 @@ export class NewoffersPage implements OnInit {
         console.log(data);
         this.items = data;
         this.isLoading = false;
-        this.showAlert('sucess');
-        this.router.navigateByUrl('/addoffers');
+      //  this.showAlert('sucess');
+
+      this.calculate('sucess');
+        
       },
       err => {
         console.log(err);
         this.isLoading = false;
-        this.showAlert('Failed');
-        this.router.navigateByUrl('/addoffers');
+        //this.showAlert('Failed');
+        this.calculate('sucess');
+       
         });
     }
 
@@ -49,6 +52,45 @@ export class NewoffersPage implements OnInit {
           buttons: ['Okay']
         })
         .then(alertEl => alertEl.present());
+    }
+
+    async calculate(message: string) {
+      // If my condition is true.
+      if (true) {
+        // show the user a confirm alert.
+        const confirmation = await this.warn(message);
+        // break out of function since they hit cancel.
+        if (!confirmation) return;
+      }
+  
+      // The user hit Okay, continue with this function.
+      this.router.navigateByUrl('/addoffers');
+    }
+
+    async warn(message: string) {
+      return new Promise(async (resolve) => {
+        const confirm = await this.alertCtrl.create({
+          header: 'confirm',
+          message: message,
+          buttons: [
+            {
+              text: 'Cancel',
+              role: 'cancel',
+              handler: () => {
+                return resolve(false);
+              },
+            },
+            {
+              text: 'OK',
+              handler: () => {
+                return resolve(true);
+              },
+            },
+          ],
+        });
+  
+        await confirm.present();
+      });
     }
 
     
