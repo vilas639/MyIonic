@@ -3,6 +3,8 @@ import { NavController, ToastController, AlertController } from '@ionic/angular'
 import { AddoffersService } from '../addoffers.service';
 import { Router } from '@angular/router';
 
+
+
 @Component({
   selector: 'app-newoffers',
   templateUrl: './newoffers.page.html',
@@ -17,7 +19,9 @@ export class NewoffersPage implements OnInit {
   constructor(public navCtrl: NavController , 
     private addoff: AddoffersService,
     private router: Router,
-     private alertCtrl: AlertController) {}
+     private alertCtrl: AlertController,
+              
+     ) {}
 
   ngOnInit() {
   }
@@ -93,5 +97,25 @@ export class NewoffersPage implements OnInit {
       });
     }
 
+
+    UPIPay()
+    {
+      // const options = {
+      //   action: this.webIntent.ACTION_VIEW,
+      //   // tslint:disable-next-line: max-line-length
+      //   url: 'upi://pay?pa=vilasjdhv639@okaxis&pn-VilasEnterprizes&tid-werstddhsgvsghmvbjasdajhsdyge4gsv&tr-45367838cndscndh&am-10&cu-INR&tn-App Payment',
+        
+      // };
+      
+      // this.webIntent.startActivity(options).then(
+      //   onSuccess => {
+      //     this.calculate('sucess');
+      //     console.log('Sucess',onSuccess);
+      //   }, onError => {
+      //     this.calculate('Error');
+      //     console.log('Error',onError);
+      //   });
+
+    }
     
 }
